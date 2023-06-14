@@ -1,0 +1,306 @@
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    height: 100vh;
+    margin: 0;
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    background: #e0e0e0;
+}
+
+#iphone {
+  width: 250px;
+  height: 540px;
+  border-radius: 50px;
+  background: #ffffff;
+  position: relative;
+  border: 2px solid green;
+  background-color: #000000;
+}
+
+#power-button {
+  width: 30px;
+  height: 5px;
+  background: green;
+  position: absolute;
+  right: 18%;
+  top: -1%;
+}
+
+#mute-button {
+  width: 3px;
+  height: 15px;
+  background: green;
+  position: absolute;
+  left: -2%;
+  top: 10%;
+}
+
+#volume-buttons {
+  position: absolute;
+  left: -2%;
+  top: 15%;
+}
+
+#volume-up,
+#volume-down {
+  width: 3px;
+  height: 25px;
+  background: green;
+  margin-bottom: 5px;
+}
+
+#screen {
+  width: 82%;
+  height: 73%;
+  background: #000000;
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  border-radius: 20px;
+}
+
+#content {
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  padding: 10px;
+}
+
+#home-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #171e24;
+  position: absolute;
+  bottom: -19%;
+  left: 55%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#home-button-square {
+  width: 12px;
+  height: 12px;
+  background: #171e24;
+  border: 2px solid #6e6d6d;
+}
+
+#screen {
+  position: relative;
+}
+
+.screen-content {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+}
+
+.screen-content.active {
+  display: block;
+}
+
+#off-screen {
+  background: #000000;
+}
+
+#apple-logo-screen {
+  background: #000000 url("/apple.png") center / contain no-repeat;
+  height: 3rem;
+  top: 11rem;
+  left: 9px;
+}
+
+#lock-screen {
+  background: linear-gradient(green, yellow);
+  width: 109%;
+  height: 105%;
+}
+
+#unlock-text {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: black;
+  font-size: 16px;
+  text-align: center;
+  width: 100%;
+}
+
+#time {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 50px;
+  text-align: center;
+}
+
+#date {
+  position: absolute;
+  top: 24%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 19px;
+  text-align: center;
+  width: 100%;
+}
+
+#home-screen {
+  background: linear-gradient(green, yellow);
+  width: 109%;
+  height: 104%;
+}
+
+#app-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: flex-start;
+  height: 100%;
+  overflow: hidden;
+  margin-top: 23px;
+}
+
+.app-icon {
+  box-sizing: border-box;
+  width: 20%;
+  text-align: center;
+  margin: 0 1%;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  background-color: blue;
+  margin: 0;
+  border-radius: 5px;
+}
+
+.app-name {
+  font-size: 10px;
+  margin: 4px;
+}
+
+.app-icon-group {
+  display: flex;
+  justify-content: left;
+  width: 100%;
+  margin-left: 3px;
+}
+
+#dock {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  width: 83%;
+  height: 54px;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(15px);
+  border-radius: 15px;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  margin: 5px 8px;
+  padding-bottom: 2px;
+}
+
+#dock .app-icon {
+  width: 20%;
+}
+
+#dock .icon {
+  width: 40px; 
+  height: 40px;
+}
+
+#battery-icon {
+  width: 20px;
+  height: 9px;
+  border: 1px solid white;
+  border-radius: 2px;
+  position: relative;
+  margin-right: 3px;
+}
+
+#battery-icon:after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  right: -3px;
+  width: 2px;
+  height: 7px;
+  background: white;
+}
+
+#battery-level {
+  height: 100%;
+  background: limegreen;
+  width: 70%; 
+}
+
+#status-bar {
+  position: absolute;
+  top: 0%;
+  left: 3%;
+  width: 95%;
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+#network-status {
+  font-size: 12px;
+}
+
+#status-time {
+  font-size: 12px;
+  margin-left: -30px;
+}
+
+.card {
+  background: #e0e0e0;
+    border-radius: 20px;
+    padding: 20px;
+    width: 300px;
+  box-shadow:  7px 7px 15px rgba(55, 84, 170, .15),
+              -7px -7px 20px rgba(255, 255, 255, 1);
+  margin: 5rem;
+}
+
+.card h2 {
+  margin: 0;
+  padding-bottom: 10px;
+}
+
+.card ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.top {
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+}
+
+.bottom {
+  display: flex;
+  justify-content: center;
+}
