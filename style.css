@@ -120,7 +120,7 @@ body {
 }
 
 #apple-logo-screen {
-  background: #000000 url("apple.png") center / contain no-repeat;
+  background: #000000 url("./apple.png") center / contain no-repeat;
   height: 3rem;
   top: 11rem;
   left: 9px;
