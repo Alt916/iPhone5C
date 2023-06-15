@@ -1,5 +1,7 @@
 * {
   font-family: 'Roboto', sans-serif;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -11,6 +13,9 @@ body {
     padding: 20px;
     font-family: 'Roboto', sans-serif;
     background: #e0e0e0;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 #iphone {

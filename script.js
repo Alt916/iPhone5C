@@ -22,7 +22,6 @@ powerButton.addEventListener("mousedown", function () {
 });
 
 powerButton.addEventListener("mouseup", function () {
-  // Lorsque le bouton power est relâché, on annule le timeout
   clearTimeout(powerButton.timeoutId);
 });
 
@@ -52,7 +51,6 @@ var startUnlockX;
 
 function handleStart(event) {
   if (currentScreen === 2) {
-    // L'écran de verrouillage est l'écran 2
     unlockStarted = true;
     startUnlockX = event.touches ? event.touches[0].clientX : event.clientX;
   }
@@ -62,7 +60,6 @@ function handleMove(event) {
   if (unlockStarted) {
     var currentX = event.touches ? event.touches[0].clientX : event.clientX;
     if (currentX - startUnlockX > 100) {
-      // Modifier le nombre pour ajuster la distance nécessaire pour déverrouiller
       screens[currentScreen].classList.remove("active");
       currentScreen = (currentScreen + 1) % screens.length;
       screens[currentScreen].classList.add("active");
@@ -85,3 +82,25 @@ document.addEventListener("mousedown", handleStart);
 document.addEventListener("mousemove", handleMove);
 document.addEventListener("mouseup", handleEnd);
 
+// Pour les appareils tactiles
+powerButton.addEventListener("touchstart", function (event) {
+  powerButton.timeoutId = setTimeout(function () {
+    screens[currentScreen].classList.remove("active");
+    currentScreen = (currentScreen + 1) % screens.length;
+    screens[currentScreen].classList.add("active");
+
+    if (currentScreen === 1) {
+      setTimeout(function () {
+        screens[currentScreen].classList.remove("active");
+        currentScreen = (currentScreen + 1) % screens.length;
+        screens[currentScreen].classList.add("active");
+      }, 5000);
+    }
+  }, 2000);
+  event.preventDefault();
+});
+
+powerButton.addEventListener("touchend", function (event) {
+  clearTimeout(powerButton.timeoutId);
+  event.preventDefault();
+});
