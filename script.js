@@ -1,29 +1,62 @@
 var powerButton = document.getElementById("power-button");
 var screens = document.getElementsByClassName("screen-content");
 var currentScreen = 0;
+var longPressDelay = 2000; // 2 seconds delay for long press
+var isMouseDown = false;
 
 powerButton.addEventListener("mousedown", function () {
-  // Lorsque le bouton power est enfoncé, on démarre un timeout
-  // Si le bouton est toujours enfoncé après 2 secondes, on passe à l'écran suivant
-  powerButton.timeoutId = setTimeout(function () {
-    screens[currentScreen].classList.remove("active");
-    currentScreen = (currentScreen + 1) % screens.length;
-    screens[currentScreen].classList.add("active");
+  // Track mouse down state
+  isMouseDown = true;
 
-    // Si l'écran actif est l'écran du logo Apple, on programme le changement à l'écran de verrouillage après 5 secondes
-    if (currentScreen === 1) {
-      setTimeout(function () {
-        screens[currentScreen].classList.remove("active");
-        currentScreen = (currentScreen + 1) % screens.length;
-        screens[currentScreen].classList.add("active");
-      }, 5000);
-    }
-  }, 2000);
+  // If power button is still pressed after longPressDelay, switch the screen
+  powerButton.timeoutId = setTimeout(function () {
+    if(isMouseDown) switchScreen();
+  }, longPressDelay);
 });
 
 powerButton.addEventListener("mouseup", function () {
+  // Update mouse down state
+  isMouseDown = false;
+
+  // Cancel the timeout when power button is released
   clearTimeout(powerButton.timeoutId);
 });
+
+powerButton.addEventListener("touchstart", function (event) {
+  // Prevent default touch behaviour
+  event.preventDefault();
+
+  // Similar to mousedown event
+  isMouseDown = true;
+  powerButton.timeoutId = setTimeout(function () {
+    if(isMouseDown) switchScreen();
+  }, longPressDelay);
+});
+
+powerButton.addEventListener("touchend", function (event) {
+  // Prevent default touch behaviour
+  event.preventDefault();
+
+  // Similar to mouseup event
+  isMouseDown = false;
+  clearTimeout(powerButton.timeoutId);
+});
+
+function switchScreen() {
+  screens[currentScreen].classList.remove("active");
+  currentScreen = (currentScreen + 1) % screens.length;
+  screens[currentScreen].classList.add("active");
+
+  // If the active screen is the Apple logo screen, schedule the switch to the lock screen after 5 seconds
+  if (currentScreen === 1) {
+    setTimeout(function () {
+      screens[currentScreen].classList.remove("active");
+      currentScreen = (currentScreen + 1) % screens.length;
+      screens[currentScreen].classList.add("active");
+    }, 5000);
+  }
+}
+
 
 function updateDateTime() {
   var now = new Date();
@@ -81,26 +114,3 @@ document.addEventListener("touchend", handleEnd);
 document.addEventListener("mousedown", handleStart);
 document.addEventListener("mousemove", handleMove);
 document.addEventListener("mouseup", handleEnd);
-
-// Pour les appareils tactiles
-powerButton.addEventListener("touchstart", function (event) {
-  powerButton.timeoutId = setTimeout(function () {
-    screens[currentScreen].classList.remove("active");
-    currentScreen = (currentScreen + 1) % screens.length;
-    screens[currentScreen].classList.add("active");
-
-    if (currentScreen === 1) {
-      setTimeout(function () {
-        screens[currentScreen].classList.remove("active");
-        currentScreen = (currentScreen + 1) % screens.length;
-        screens[currentScreen].classList.add("active");
-      }, 5000);
-    }
-  }, 2000);
-  event.preventDefault();
-});
-
-powerButton.addEventListener("touchend", function (event) {
-  clearTimeout(powerButton.timeoutId);
-  event.preventDefault();
-});
