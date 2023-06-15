@@ -57,7 +57,6 @@ function switchScreen() {
   }
 }
 
-
 function updateDateTime() {
   var now = new Date();
   var hours = now.getHours();
@@ -73,10 +72,10 @@ function updateDateTime() {
   document.getElementById("date").innerText = dateString;
 }
 
-// Mise à jour de l'heure et de la date toutes les minutes
+// Update the date and time every minute
 setInterval(updateDateTime, 60000);
 
-// Mise à jour de l'heure et de la date immédiatement
+// Update the date and time immediately
 updateDateTime();
 
 var unlockStarted = false;
@@ -105,12 +104,12 @@ function handleEnd() {
   unlockStarted = false;
 }
 
-// Pour les appareils tactiles
+// For touch devices
 document.addEventListener("touchstart", handleStart);
 document.addEventListener("touchmove", handleMove);
 document.addEventListener("touchend", handleEnd);
 
-// Pour les ordinateurs de bureau
+// For desktop computers
 document.addEventListener("mousedown", handleStart);
 document.addEventListener("mousemove", handleMove);
 document.addEventListener("mouseup", handleEnd);
